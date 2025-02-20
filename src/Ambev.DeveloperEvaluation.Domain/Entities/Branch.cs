@@ -8,11 +8,20 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
     {
         public string Name { get; private set; } = string.Empty;
         public string Location { get; private set; } = string.Empty;
+        public bool AllowsDiscounts { get; private set; }
 
-        public Branch(string name, string location)
+        public Branch(string name, string location, bool allowsDiscounts)
         {
             Name = name;
             Location = location;
+            AllowsDiscounts = allowsDiscounts;
+        }
+
+        public void UpdateBranch(string name, string location, bool allowsDiscounts)
+        {
+            Name = name;
+            Location = location;
+            AllowsDiscounts = allowsDiscounts;
         }
 
         public ValidationResultDetail Validate()

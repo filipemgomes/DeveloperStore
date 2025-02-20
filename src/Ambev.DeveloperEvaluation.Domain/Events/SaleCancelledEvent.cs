@@ -1,14 +1,19 @@
 ﻿namespace Ambev.DeveloperEvaluation.Domain.Events
 {
-    public class SaleCancelledEvent
+    using MediatR;
+
+    public class SaleCancelledEvent : INotification
     {
         public Guid SaleId { get; }
-        public DateTime CancelledAt { get; }
+        public string Customer { get; }
+        public Guid BranchId { get; }
+        public DateTime CancelledAt { get; } = DateTime.UtcNow;
 
-        public SaleCancelledEvent(Guid saleId, DateTime cancelledAt)
+        public SaleCancelledEvent(Guid saleId, string customer, Guid branchId)
         {
             SaleId = saleId;
-            CancelledAt = cancelledAt;
+            Customer = customer;
+            BranchId = branchId;
         }
     }
 }

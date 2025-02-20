@@ -9,10 +9,10 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
 {
     public interface ISaleRepository
     {
-        Task<Sale?> GetByIdAsync(Guid id);
-        Task<IEnumerable<Sale>> GetAllAsync();
-        Task AddAsync(Sale sale);
-        Task UpdateAsync(Sale sale);
-        Task DeleteAsync(Guid id);
+        Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Sale>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task AddAsync(Sale sale, CancellationToken cancellationToken = default);
+        Task UpdateAsync(Sale sale, CancellationToken cancellationToken = default);
     }
+
 }

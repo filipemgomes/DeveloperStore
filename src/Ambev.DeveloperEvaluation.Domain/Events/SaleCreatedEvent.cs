@@ -1,15 +1,16 @@
 ﻿namespace Ambev.DeveloperEvaluation.Domain.Events
 {
-    public class SaleCreatedEvent
+    using MediatR;
+
+    public class SaleCreatedEvent : INotification
     {
         public Guid SaleId { get; }
-        public DateTime SaleDate { get; }
+        public DateTime SaleDate { get; } = DateTime.UtcNow;
         public string Customer { get; }
 
-        public SaleCreatedEvent(Guid saleId, DateTime saleDate, string customer)
+        public SaleCreatedEvent(Guid saleId, string customer)
         {
             SaleId = saleId;
-            SaleDate = saleDate;
             Customer = customer;
         }
     }

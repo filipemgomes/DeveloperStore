@@ -9,6 +9,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
         {
             RuleFor(si => si.Quantity).GreaterThan(0).LessThanOrEqualTo(20);
             RuleFor(si => si.UnitPrice).GreaterThan(0);
+            RuleFor(si => si.TotalPrice).GreaterThan(0);
+
         }
     }
-}
+    }

@@ -7,7 +7,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
     {
         public ProductValidator()
         {
-            RuleFor(p => p.Name).NotEmpty();
+            RuleFor(p => p.Name).NotEmpty().MaximumLength(100);
             RuleFor(p => p.UnitPrice).GreaterThan(0);
         }
     }

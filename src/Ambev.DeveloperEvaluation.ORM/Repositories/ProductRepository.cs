@@ -35,14 +35,24 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            var product = await GetByIdAsync(id);
-            if (product != null)
+            var product = await _context.Products.FindAsync(new object[] { id }, cancellationToken);
+            if (product == null)
             {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
+                return false;
             }
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+
+        public async Task<IEnumerable<Product>> GetMultipleByIdsAsync(List<Guid> productIds, CancellationToken cancellationToken = default)
+        {
+            return await _context.Products
+                .Where(p => productIds.Contains(p.Id))
+                .ToListAsync(cancellationToken);
         }
     }
 }

@@ -7,8 +7,14 @@ namespace Ambev.DeveloperEvaluation.Domain.Validation
     {
         public BranchValidator()
         {
-            RuleFor(b => b.Name).NotEmpty();
-            RuleFor(b => b.Location).NotEmpty();
+            RuleFor(b => b.Name)
+                .NotEmpty().WithMessage("Branch name is required.");
+
+            RuleFor(b => b.Location)
+                .NotEmpty().WithMessage("Branch location is required.");
+
+            RuleFor(b => b.AllowsDiscounts)
+                .NotNull().WithMessage("AllowsDiscounts must be defined as true or false.");
         }
     }
 }

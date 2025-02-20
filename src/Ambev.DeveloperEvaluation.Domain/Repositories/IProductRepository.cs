@@ -8,6 +8,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         Task<IEnumerable<Product>> GetAllAsync();
         Task AddAsync(Product product);
         Task UpdateAsync(Product product);
-        Task DeleteAsync(Guid id);
+        Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Product>> GetMultipleByIdsAsync(List<Guid> productIds, CancellationToken cancellationToken = default);
     }
 }

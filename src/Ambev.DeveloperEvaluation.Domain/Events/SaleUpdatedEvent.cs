@@ -1,11 +1,11 @@
 ﻿namespace Ambev.DeveloperEvaluation.Domain.Events
 {
-    public class SaleModifiedEvent
+    public class SaleUpdatedEvent
     {
         public Guid SaleId { get; }
         public DateTime ModifiedAt { get; }
 
-        public SaleModifiedEvent(Guid saleId, DateTime modifiedAt)
+        public SaleUpdatedEvent(Guid saleId, DateTime modifiedAt)
         {
             SaleId = saleId;
             ModifiedAt = modifiedAt;

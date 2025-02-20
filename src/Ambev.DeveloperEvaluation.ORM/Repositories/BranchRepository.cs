@@ -13,36 +13,27 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             _context = context;
         }
 
-        public async Task<Branch?> GetByIdAsync(Guid id)
+        public async Task<Branch?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Branches.FirstOrDefaultAsync(b => b.Id == id);
+            return await _context.Branches.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
 
-        public async Task<IEnumerable<Branch>> GetAllAsync()
+        public async Task<IEnumerable<Branch>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Branches.ToListAsync();
+            return await _context.Branches.ToListAsync(cancellationToken);
         }
 
-        public async Task AddAsync(Branch branch)
+        public async Task AddAsync(Branch branch, CancellationToken cancellationToken = default)
         {
-            await _context.Branches.AddAsync(branch);
-            await _context.SaveChangesAsync();
+            await _context.Branches.AddAsync(branch, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(Branch branch)
+        public async Task UpdateAsync(Branch branch, CancellationToken cancellationToken = default)
         {
             _context.Branches.Update(branch);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(Guid id)
-        {
-            var branch = await GetByIdAsync(id);
-            if (branch != null)
-            {
-                _context.Branches.Remove(branch);
-                await _context.SaveChangesAsync();
-            }
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
+
 }

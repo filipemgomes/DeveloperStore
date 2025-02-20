@@ -15,6 +15,12 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
             UnitPrice = unitPrice;
         }
 
+        public void UpdateProduct(string name, decimal unitPrice)
+        {
+            Name = name;
+            UnitPrice = unitPrice;
+        }
+
         public ValidationResultDetail Validate()
         {
             var validator = new ProductValidator();
